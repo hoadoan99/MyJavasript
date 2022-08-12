@@ -67,25 +67,31 @@
 
 
     <script>
-        var listProducts = new Array();
+        // get listproduct in localStorage 
+
+        let listProducts = JSON.parse(localStorage.getItem('product'));
+        if (listProducts == null) {
+            listProducts = new Array();
+        }
+        console.log(listProducts);
         function onclicCreateProduct() {
-            var nodeImage = document.getElementById("img");
-            var valueImage = nodeImage.value;
+            let nodeImage = document.getElementById("img");
+            let valueImage = nodeImage.value;
 
-            var nodeName = document.getElementById("name");
-            var valueName = nodeName.value;
+            let nodeName = document.getElementById("name");
+            let valueName = nodeName.value;
 
-            var nodePrice = document.getElementById("price");
-            var valuePrice = parseInt(nodePrice.value);
+            let nodePrice = document.getElementById("price");
+            let valuePrice = parseInt(nodePrice.value);
 
-            var nodeDiscount = document.getElementById("discount");
-            var valueDiscount = parseFloat(nodeDiscount.value);
+            let nodeDiscount = document.getElementById("discount");
+            let valueDiscount = parseFloat(nodeDiscount.value);
 
-            var nodeLocation = document.getElementById("location");
-            var valueLocation = nodeLocation.value;
+            let nodeLocation = document.getElementById("location");
+            let valueLocation = nodeLocation.value;
 
             // create new product object 
-            var userProduct = createProduct(valueImage, valueName, valuePrice, valueDiscount, valueLocation);
+            let userProduct = createProduct(valueImage, valueName, valuePrice, valueDiscount, valueLocation);
             console.log(userProduct);
 
             console.log("Price:" + userProduct.priceDiscount());
@@ -94,6 +100,11 @@
 
             listProducts.push(userProduct);
             console.log(listProducts);
+
+            // store listproduct to localStorage 
+            // let jsonListProduct = JSON.stringify(listProducts);
+            localStorage.setItem('product', JSON.stringify(listProducts));
+
 
         }
     </script>
